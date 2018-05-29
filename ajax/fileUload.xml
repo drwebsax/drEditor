@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audio>
+  <title> Sound File Upload</title>
+  <control>
+    <switch value="0" max="1"></switch>
+    <switch value="0" max="1"></switch>
+
+    <dial value="0.0" max="1" step="1" ></dial>
+    <dial value="0.0" max="1" step="0.1" ></dial>
+    <dial value="0.0" max="0" step="0" ></dial>
+    <dial value="0.0" max="0" step="0" ></dial>
+
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="1" step="0.1" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+
+  </control>
+
+  <jsfile>
+
+    <script>
+        var playing =new DSX.musicPlayer();
+        playing.load("upload","sound");
+
+    </script>
+
+   <h2>Sound File Upload</h2>
+   <h2>How to control</h2>
+      <ul>
+        <li>switch1 : sound on/off </li>
+        <li>Val 1 : osc frequency control (0~2000 Hz)</li>
+        <li>Val 2 : gain control (0.0~ 0.1)</li>
+      </ul>
+
+  </jsfile>
+
+
+</audio>

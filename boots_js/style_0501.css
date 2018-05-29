@@ -1,0 +1,39 @@
+#real {
+	float:left;
+	width:600px;
+	height:485px;
+  padding: 20px;
+	/*color:white;*/
+	/*background-color:LightGray;*/
+	background: linear-gradient(black,white,white,white,white, white,black);
+  margin-bottom:10px;
+  border-radius: 10px;
+  border: 3px solid black;
+  outline: none;
+}
+textarea {
+		resize: none;
+		color:black;
+		font-size: 15px !important
+}
+
+#txt {
+	  float:left;
+		/*background-color:LightGray;*/
+		background: linear-gradient(black,white,white,white,white, white,black);
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid black;
+    margin: 0px 30px 20px 50px;
+    outline: none;
+	  cursor:pointer;
+
+}
+.back_color{
+	/*background-color:blue;*/
+	background: linear-gradient( black,gray,white,#337ab7, white,gray,black);
+
+}
+.text_center{margin: auto;}
+.top-120{top:-140px !important}
+.dial_right{right:80px !important}

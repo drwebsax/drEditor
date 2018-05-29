@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audioSet>
+  <title> Reverb</title>
+  <control>
+    <switch value="0" max="1"></switch>
+    <switch value="0" max="1"></switch>
+
+    <dial value="0.0" max="1" step="0.01" ></dial>
+    <dial value="0.0" max="1" step="0.01" ></dial>
+    <dial value="0.0" max="1" step="0.01" ></dial>
+    <dial value="0.0" max="0" step="0" ></dial>
+
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="1" step="0.1" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+
+  </control>
+
+  <jsfile>
+
+    <script>
+        var gain = new DSX.Amp({gain: 0.5});
+        var adsr = new DSX.ATRS();
+        var saxDelay = new DSX.Delay({delayTime: 200,feedback: 0.45, });
+        var osc = new DSX.Osc({type:"sawtooth",freq: 500});
+
+        var sax_delay = new DSX.valueChange("dial_1", saxDelay.delayTime);
+        var sax_feedback = new DSX.valueChange("dial_2", saxDelay.feedback);
+        var ampgain = new DSX.valueChange("dial_3", gain.gain);
+
+        var st = new DSX.functionChange("key1", key);
+        function key(data) {
+            var str = 0;
+            str = 880 * 4 * Math.pow(2, (data.note[1] - 69) / 12);
+
+            if (data.note[0] == "1") {
+                osc.start()
+                osc.frequency.value = str;
+                gain.gain.value = 0.7;
+                adsr.soundfrom(osc, 0.1, 0.2);
+                adsr.connect(gain);
+                gain.connect(saxDelay);
+                saxDelay.connect(DAC);
+            }
+            if (data.note[0] == "0") {
+                gain.gain.value = 0;
+            }
+        }
+
+    </script>
+   <h2>delay</h2>
+   <h2>How to control</h2>
+      <ul>
+        <li>Keyboadrs : sound on/off </li>
+        <li>Val 1 : delaytime control (0.0~ 0.1)</li>
+        <li>Val 2 : feedback control (0.0~ 0.1)</li>
+        <li>Val 3 : gain control (0.0~ 0.1)</li>
+      </ul>
+
+  </jsfile>
+
+
+</audioSet>

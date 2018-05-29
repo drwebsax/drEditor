@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audioSet>
+  <title> Stero Pan</title>
+  <control>
+    <switch value="0" max="1"></switch>
+    <switch value="0" max="1"></switch>
+
+    <dial value="0.0" max="20000" step="1" ></dial>
+    <dial value="0.0" max="1" step="0.1" ></dial>
+    <dial value="0.0" min="-1" max="1" step="0.1" ></dial>
+    <dial value="0.0" max="0" step="0" ></dial>
+
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="1" step="0.1" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+
+  </control>
+
+  <jsfile>
+
+    <script>
+
+var gain = new DSX.Amp({gain: 0.5});
+var osc = new DSX.Osc({type:"sawtooth",freq: 500});
+ var oscfrequency = new DSX.valueChange("dial_1", osc.frequency);
+var ampgain = new DSX.valueChange("dial_2", gain.gain);
+
+var stereoPan = new DSX.stereoPan({ pan: -1,});
+var osc_pan =new DSX.valueChange("dial_3",stereoPan.pan);
+var sound_on_off = new DSX.functionChange("switch1",switch1);
+
+osc.connect(gain);
+gain.connect(stereoPan);
+stereoPan.connect(DAC);
+
+function switch1(e) {
+    if (e.target.value == "1") {
+        osc.start();
+    }
+
+  if (e.target.value == "0") {
+        osc.stop();
+    }
+}
+    </script>
+
+   <h2>Stero pan </h2>
+   <h2>How to control</h2>
+      <ul>
+        <li>switch1 : sound on/off </li>
+        <li>Val 1 : osc frequency control (0~2000 Hz)</li>
+        <li>Val 2 : gain control (0.0~ 0.1)</li>
+        <li>Val 3 : left = -1 : right = 1 (-1 ~ 0.1)</li>
+      </ul>
+
+  </jsfile>
+
+
+</audioSet>

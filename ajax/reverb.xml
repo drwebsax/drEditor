@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audioSet>
+  <title> Reverb</title>
+  <control>
+    <switch value="0" max="1"></switch>
+    <switch value="0" max="1"></switch>
+
+    <dial value="0.0" max="1" step="01" ></dial>
+    <dial value="0.0" max="1" step="0.1" ></dial>
+    <dial value="0.0" max="1" step="0.1" ></dial>
+    <dial value="0.0" max="0" step="0" ></dial>
+
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="1" step="0.1" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+
+  </control>
+
+  <jsfile>
+
+    <script>
+        var gain = new DSX.Amp({gain: 0.5});
+        var adsr = new DSX.ATRS();
+        var saxReverb =new DSX.Reverb({gain:0.6});
+
+        var ampgain = new DSX.valueChange("dial_1", gain.gain);
+        var sax_reverbtime =new DSX.valueChange("dial_2",saxReverb.gain);
+        var osc = new DSX.Osc({type:"sawtooth",freq: 500});
+        var st = new DSX.functionChange("key1", key);
+        function key(data) {
+            var str = 0;
+            str = 880 * 4 * Math.pow(2, (data.note[1] - 69) / 12);
+
+            if (data.note[0] == "1") {
+                osc.start()
+                osc.frequency.value = str;
+                gain.gain.value = 0.7;
+                adsr.soundfrom(osc, 0.1, 0.2);
+                adsr.connect(gain);
+                saxReverb.getfrom(gain);
+                saxReverb.connect(DAC);
+            }
+            if (data.note[0] == "0") {
+                gain.gain.value = 0;
+            }
+        }
+        var frequrncy_canvas = new DSX.freqDomain('canv', 'gray');
+        var amp_canvas = new DSX.ampDomain('canAmp', "pink",300,200);
+        frequrncy_canvas.getAnalyser(gain);
+        amp_canvas.getAnalyser(gain);
+
+
+    </script>
+          <canvas id="canv" style="width:200px;height:100px;"></canvas>
+          <canvas id="canAmp" style="width:200px;height:100px;"></canvas>
+   <h2>Reverb</h2>
+   <h2>How to control</h2>
+      <ul>
+        <li>Keyboadrs : sound on/off </li>
+        <li>Val 1 : gain control (0.0~ 0.1)</li>
+        <li>Val 2 : reverb gain control (0.0~ 0.1)</li>
+      </ul>
+
+  </jsfile>
+
+
+</audioSet>

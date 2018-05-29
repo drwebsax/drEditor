@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audioSet>
+  <title> Reverb</title>
+  <control>
+    <switch value="0" max="1"></switch>
+    <switch value="0" max="1"></switch>
+
+    <dial value="0.0" max="1" step="0.01" ></dial>
+    <dial value="0.0" max="1" step="0.01" ></dial>
+    <dial value="0.0" max="1" step="0.01" ></dial>
+    <dial value="0.0" max="0" step="0" ></dial>
+
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="1" step="0.1" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+
+  </control>
+
+  <jsfile>
+
+    <script>
+    var gain = new DSX.Amp({gain: 0.5});
+    var saxInput = new DSX.Mic();
+    var amp_gain = new DSX.valueChange("dial_1", gain.gain);
+    var sound_on_off = new DSX.functionChange("switch1",switch1);
+
+    function switch1(e) {
+        if (e.target.value == "1") {
+            saxInput.connect(gain);
+            gain.connect(DAC);
+
+        }else{
+            gain.disconnect();
+
+        }
+    }
+    var frequrncy_canvas = new DSX.freqDomain('canv', "red");
+    frequrncy_canvas.getAnalyser(gain);
+
+    </script>
+          <canvas id="canv" style="width:200px;height:100px;"></canvas>
+          <canvas id="canAmp" style="width:200px;height:100px;"></canvas>
+   <h2>Mic Input</h2>
+   <h2>How to control</h2>
+      <ul>
+        <li>Keyboadrs : sound on/off </li>
+        <li>Val 1 : Mic Gain (0.0~ 0.1)</li>
+
+      </ul>
+
+  </jsfile>
+
+
+</audioSet>

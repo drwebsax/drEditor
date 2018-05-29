@@ -1,0 +1,40 @@
+{"editor": {
+    "title": "simple osc",
+    "dial_1": {
+        "value": "0",
+        "max": "1000",
+        "step":"1 "
+    },
+    "dial_2": {
+        "value": "0",
+        "max": "1000",
+        "step": "1 "
+    },
+    "dial_3": {
+        "value": "0",
+        "max": "1000",
+        "step":"1 "
+    },
+    "slider_1": {
+        "value": "0",
+        "max": "1000",
+        "step":"1 "
+    },
+    "slider_2": {
+        "value": "0",
+        "max": "1000",
+        "step":"1 "
+    },
+    "slider_3": {
+        "value": "0",
+        "max": "1000",
+        "step":"1 "
+    },
+    "slider_4": {
+        "value": "0",
+        "max": "1000",
+        "step":"1 "
+    }
+
+
+}}

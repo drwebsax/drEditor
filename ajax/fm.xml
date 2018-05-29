@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audioSet>
+  <title> Frequency Modulation </title>
+  <control>
+     <switch value="0" max="1"></switch>
+     <switch value="0" max="1"></switch>
+
+     <dial value="0.0" max="2000" step="1" ></dial>
+     <dial value="0.0" max="2000" step="1" ></dial>
+     <dial value="0.0" max="2000" step="1" ></dial>
+     <dial value="0.0" max="1" step="0.1" ></dial>
+
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+     <slider value="0.0" max="2000" step="10" ></slider>
+  </control>
+
+  <jsfile>
+
+    <script>
+
+    var gain = new DSX.Amp({gain: 0.8});
+    var fm = new  DSX.FM({carrier_type:"sine",carrier:500,mod_type :"sine",modfreq:700,depth:1800,gain:0.5});
+    var sax_fm1 =new DSX.valueChange("dial_1",fm.carrier);
+    var sax_fm2 =new DSX.valueChange("dial_2",fm.modfreq);
+    var sax_fm3 =new DSX.valueChange("dial_3",fm.depth);
+    var sax_fm4 =new DSX.valueChange("dial_4",fm.gain);
+    var play = document.querySelector('.play');
+    var stop = document.querySelector('.stop');
+
+    play.onclick = function() {
+
+    fm.connect(gain);
+    gain.connect(DAC);
+
+    }
+    stop.onclick = function() {
+     fm.stop();
+
+    }
+
+    </script>
+    <button class="play">Play</button>
+    <button class="stop">Stop</button>
+    <h1> Frequency Modulation </h1>
+    <h2>How to control</h2>
+    <ul>
+       <li>switch1 : sound on/off </li>
+       <li>Val 1 : osc frequency control (0~2000Hz)</li>
+       <li>Val 2 : modulator frequency (0~2000Hz)</li>
+       <li>Val 3 : modulation depth (0~2000Hz)</li>
+       <li>Val 4 : gain control (0.0~ 0.1)</li>
+    </ul>
+
+  </jsfile>
+
+
+</audioSet>
