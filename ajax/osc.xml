@@ -16,9 +16,7 @@
      <slider value="0.0" max="2000" step="10" ></slider>
 
   </control>
-
   <jsfile>
-
     <script>
       var osc = new DSX.Osc({type:"sawtooth",freq: 300});
       var gain = new DSX.Amp({ gain: 0.9});
@@ -45,8 +43,8 @@
 
 
     </script>
-          <canvas id="canv" style="width:200px;height:100px;"></canvas>
-          <canvas id="canAmp" style="width:200px;height:100px;"></canvas>
+    <canvas id="canv" style="width:200px;height:100px;"></canvas>
+    <canvas id="canAmp" style="width:200px;height:100px;"></canvas>
    <h2>Simple Osc</h2>
    <h2>How to control</h2>
       <ul>
@@ -54,8 +52,5 @@
         <li>Val 1 : osc frequency control (0~2000 Hz)</li>
         <li>Val 2 : gain control (0.0~ 0.1)</li>
       </ul>
-
   </jsfile>
-
-
 </audioSet>

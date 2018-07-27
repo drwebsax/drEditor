@@ -1,33 +1,26 @@
 
-	 // Editor
+// Editor
 Dr.Framework = new function() {
+
     var that = this;
-
     this.saveCurrentPos=function(objTextArea) {
-
       if (objTextArea.createTextRange){
          objTextArea.currentPos = document.selection.createRange().duplicate();
       }
-
     }
 
     this.Ready = function(state) {
-
-      alert(state);
-
+        alert(state);
     }
-
     this.textSave = function() {
 
 	    //For Blobs, use \r\n for new line
 	    var textToWrite = $("textarea").val();
-
 	    //Check if browser supports Blob
 	    if (window.Blob) {
 	        var textFileAsBlob = new Blob([textToWrite], {
 	            type: 'text/plain'
 	        });
-
 	        //Need to specify the filename that we are going to set here
 	        var fileNameToSaveAs = Date.now()+".txt";
 	        var downloadLink = document.createElement("a");
@@ -51,20 +44,12 @@ Dr.Framework = new function() {
 	            downloadLink.click();
 	        }
 	    }
-
     }
-
-
-
-
 };
 
-
-
-
 function saveCurrentPos (objTextArea) {
-if (objTextArea.createTextRange)
-objTextArea.currentPos = document.selection.createRange().duplicate();
+    if (objTextArea.createTextRange)
+    objTextArea.currentPos = document.selection.createRange().duplicate();
 }
 // function insertText (objTextArea, text) {
 //     if (objTextArea.createTextRange && objTextArea.currentPos) {
