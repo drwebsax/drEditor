@@ -10,5 +10,5 @@ DrEditor is a  Design and test editor for Web Audio API
 
 ### License
 
-DrSax.js is MIT licensed.
+DrEditor is MIT licensed.
 
